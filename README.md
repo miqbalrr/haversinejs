@@ -1,0 +1,2 @@
+# haversinejs
+Javascript Distance Calculator
