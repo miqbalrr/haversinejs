@@ -20,8 +20,8 @@ const dst_p = new Point(-8,8) // destinantion (lat,lon)
 
 haversine(src_p, dst_p, is_miles) // is_miles bool
 
-Multiple count
-===================================================
+// Multiple count
+// ==============
 const {haversines} = require("haversinecalc")
 
 let src1 = {
