@@ -1,3 +1,4 @@
+use serde_derive::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
 
 const R: f64 = 6371000.0;
@@ -19,7 +20,7 @@ pub trait Location {
 }
 
 #[wasm_bindgen]
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Serialize, Deserialize)]
 pub struct Point {
     pub lat: f64,
     pub lon: f64,
@@ -70,6 +71,22 @@ impl Haversine {
             false => res,
             true => res / MILES,
         }
+    }
+}
+
+#[wasm_bindgen]
+#[derive(Serialize, Deserialize)]
+pub struct HaversineParameter {
+    pub src: Point,
+    pub dst: Point,
+    pub is_miles: bool,
+}
+
+#[wasm_bindgen]
+impl HaversineParameter {
+    #[wasm_bindgen(constructor)]
+    pub fn new(src: Point, dst: Point, is_miles: bool) -> HaversineParameter {
+        Self { src, dst, is_miles }
     }
 }
 
